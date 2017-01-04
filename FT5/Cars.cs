@@ -11,10 +11,10 @@ namespace FT5
         int id;
         int toEntrenceQueue;
 
-        public Car(int id, int toEntrenceQueue)
+        public Car(int id)
         {
             this.id = id;
-            this.toEntrenceQueue = toEntrenceQueue;
+            
         }
 
     }
