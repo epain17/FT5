@@ -1,2 +1,10 @@
 C:\Users\Emil\Documents\Visual Studio 2015\Projects\FT5\FT5\bin\Debug\FT5.exe.config
 C:\Users\Emil\Documents\GitHub\FT5\FT5\bin\Debug\FT5.exe.config
+C:\Users\Emil\Documents\GitHub\FT5\FT5\bin\Debug\FT5.exe
+C:\Users\Emil\Documents\GitHub\FT5\FT5\bin\Debug\FT5.pdb
+C:\Users\Emil\Documents\GitHub\FT5\FT5\obj\Debug\FT5.csprojResolveAssemblyReference.cache
+C:\Users\Emil\Documents\GitHub\FT5\FT5\obj\Debug\FT5.Form1.resources
+C:\Users\Emil\Documents\GitHub\FT5\FT5\obj\Debug\FT5.Properties.Resources.resources
+C:\Users\Emil\Documents\GitHub\FT5\FT5\obj\Debug\FT5.csproj.GenerateResource.Cache
+C:\Users\Emil\Documents\GitHub\FT5\FT5\obj\Debug\FT5.exe
+C:\Users\Emil\Documents\GitHub\FT5\FT5\obj\Debug\FT5.pdb

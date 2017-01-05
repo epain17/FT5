@@ -13,22 +13,18 @@ namespace FT5
         int maxNrCars;
         int currentNrCars;
         Queue<Car> carsOnTheLot = new Queue<Car>();
-        ExitQueue nExit, sExit, wExit, eExit;
         EntryQueue nEntry, sEntry, wEntry, eEntry;
         Label l1, l2;
         object mylock;
+        bool run;
+        Random random;
 
-
-        public ParkingLot(int maxNrCars, ExitQueue nExit, ExitQueue sExit, ExitQueue wExit, ExitQueue eExit,
-            EntryQueue nEntry, EntryQueue sEntry, EntryQueue wEntry, EntryQueue eEntry, Label l1, Label l2)
+        public ParkingLot(bool run, int maxNrCars, EntryQueue nEntry, EntryQueue sEntry, EntryQueue wEntry, EntryQueue eEntry, Label l1, Label l2)
         {
             this.maxNrCars = maxNrCars;
             currentNrCars = 0;
-
-            this.nExit = nExit;
-            this.sExit = sExit;
-            this.wExit = wExit;
-            this.eExit = eExit;
+            random = new Random();
+           
             this.nEntry = nEntry;
             this.sEntry = sEntry;
             this.wEntry = wEntry;
@@ -39,7 +35,7 @@ namespace FT5
 
         }
 
-        public void EnqueuweToLotFromEntry(int QueueSelect)
+        public void EnqueuweToLotFromEntry(Car car)
         {
             Monitor.Enter(mylock);
             while (carsOnTheLot.Count >= maxNrCars)
@@ -47,30 +43,57 @@ namespace FT5
                 Monitor.Wait(mylock);
             }
 
-            if (QueueSelect == 1)
-            {
-                carsOnTheLot.Enqueue(nEntry.DequeueToLot());
-            }
-            else if (QueueSelect == 2)
-            {
-                carsOnTheLot.Enqueue(sEntry.DequeueToLot());
-
-            }
-            else if (QueueSelect == 3)
-            {
-                carsOnTheLot.Enqueue(wEntry.DequeueToLot());
-
-            }
-            else if (QueueSelect == 4)
-            {
-                carsOnTheLot.Enqueue(eEntry.DequeueToLot());
-            }
+            carsOnTheLot.Enqueue(car);
 
             Monitor.PulseAll(mylock);
             ++currentNrCars;
+            l1.Invoke(new Action(delegate() { l1.Text = currentNrCars.ToString(); }));
             Monitor.PulseAll(mylock);
             Monitor.Exit(mylock);
 
+        }
+
+        public void EnqueueNorth()
+        {
+            while(run == true)
+            {
+                Car temp;
+                temp = nEntry.DequeueToLot();
+                EnqueuweToLotFromEntry(temp);
+                Thread.Sleep(random.Next(200, 500));
+            }
+        }
+        public void EnqueueSouth()
+        {
+            while (run == true)
+            {
+                Car temp;
+                temp = sEntry.DequeueToLot();
+                EnqueuweToLotFromEntry(temp);
+                Thread.Sleep(random.Next(200, 500));
+
+            }
+        }
+        public void EnqueueWest()
+        {
+            while (run == true)
+            {
+                Car temp;
+                temp = wEntry.DequeueToLot();
+                EnqueuweToLotFromEntry(temp);
+                Thread.Sleep(random.Next(200, 500));
+
+            }
+        }
+        public void EnqueueEast()
+        {
+            while (run == true)
+            {
+                Car temp;
+                temp = eEntry.DequeueToLot();
+                EnqueuweToLotFromEntry(temp);
+                Thread.Sleep(random.Next(200, 500));
+            }
         }
 
         public Car DequeFromLot()
@@ -82,12 +105,25 @@ namespace FT5
                 Monitor.Wait(mylock);
             }
 
+            --currentNrCars;
+            l1.Invoke(new Action(delegate () { l1.Text = currentNrCars.ToString(); }));
+
             Monitor.PulseAll(mylock);
             Monitor.Exit(mylock);
 
             return carsOnTheLot.Dequeue();
         }
 
+
+        public bool Empty()
+        {
+            if(carsOnTheLot.Count() == 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
     }
 }

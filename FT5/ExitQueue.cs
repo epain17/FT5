@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FT5
 {
@@ -10,24 +12,42 @@ namespace FT5
     {
         Queue<Car> carExitQueue = new Queue<Car>();
         ParkingLot pLot;
-        int max;
+        int nrCars;
         bool run;
+        Random random;
+        Label l1;
 
-        public ExitQueue(int max, ParkingLot pLot, bool run)
+        public ExitQueue(ParkingLot pLot, bool run, Label l1)
         {
-            this.max = max;
+            nrCars = 0;
             this.pLot = pLot;
-            run = false;
+            this.run = run;
+            random = new Random();
+            this.l1 = l1;
+        }
+
+        public void Sleep()
+        {
+            while (pLot.Empty() != false)
+            {
+                Thread.Sleep(random.Next(1000, 1500));
+            }
+            Control();
         }
 
         public void Control()
         {
-            while(run == true)
+            while(pLot.Empty() == false)
             {
                 Car temp;
                 temp = pLot.DequeFromLot();
                 CarToExit(temp);
+                Thread.Sleep(random.Next(400, 1000));
+                ++nrCars;
+                l1.Invoke(new Action(delegate () { l1.Text = nrCars.ToString(); }));
             }
+
+            Sleep();
         }
 
         public void CarToExit(Car car)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FT5
@@ -13,13 +14,13 @@ namespace FT5
         Random random;
         int carID, entryQ;
 
-        public ControlCars(EntryQueue nEntry, EntryQueue sEntry, EntryQueue wEntry, EntryQueue eEntry)
+        public ControlCars(bool run, EntryQueue nEntry, EntryQueue sEntry, EntryQueue wEntry, EntryQueue eEntry)
         {
             this.nEntry = nEntry;
             this.sEntry = sEntry;
             this.wEntry = wEntry;
             this.eEntry = eEntry;
-            run = false;
+            this.run = run;
             random = new Random();
             carID = 0;
             entryQ = 0;
@@ -33,6 +34,17 @@ namespace FT5
                 entryQ = random.Next(0, 5);
                 AddCarsToLot(entryQ);
             }
+
+            Sleep();
+        }
+
+        public void Sleep()
+        {
+            while(run != true)
+            {
+                Thread.Sleep(random.Next(1000, 1500));
+            }
+            Control();
         }
 
         public void AddCarsToLot(int Entry)
