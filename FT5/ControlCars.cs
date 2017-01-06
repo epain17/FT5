@@ -29,6 +29,7 @@ namespace FT5
 
         public void Control()
         {
+            //Console.WriteLine(run);
             while (run == true)
             {
                 entryQ = random.Next(0, 5);
@@ -42,7 +43,7 @@ namespace FT5
         {
             while (run != true)
             {
-                Thread.Sleep(random.Next(250, 500));
+                Thread.Sleep(random.Next(50, 100));
             }
             Control();
         }
@@ -88,8 +89,14 @@ namespace FT5
 
             }
 
-            Thread.Sleep(random.Next(200, 400));
+            Thread.Sleep(random.Next(50, 100));
             Control();
+        }
+
+        public bool Run
+        {
+            get { return run; }
+            set { run = value; }
         }
     }
 }

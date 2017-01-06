@@ -9,7 +9,6 @@ namespace FT5
     class Car
     {
         int id;
-        int toEntrenceQueue;
 
         public Car(int id)
         {

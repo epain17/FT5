@@ -12,7 +12,7 @@ namespace FT5
 {
     public partial class Form1 : Form
     {
-        bool run = true;
+        bool run = false;
         ParkingLot pLot;
         ControlCars cCars;
 
@@ -26,27 +26,30 @@ namespace FT5
         ExitQueue westExit;
         ExitQueue eastExit;
 
-        
+
         public Form1()
         {
             InitializeComponent();
             CreateParkingLot();
+            CreateTasks();
         }
 
         public void CreateParkingLot()
         {
-            northEntry = new EntryQueue(50, NorthLabel);
-            southEntry = new EntryQueue(50, South);
-            westEntry = new EntryQueue(50, West);
-            eastEntry = new EntryQueue(50, East);
+            northEntry = new EntryQueue(50, NorthEntryUnits);
+            southEntry = new EntryQueue(50, SouthEntryUnits);
+            westEntry = new EntryQueue(50, WestEntryUnits);
+            eastEntry = new EntryQueue(50, EastEntryUnits);
 
-            pLot = new ParkingLot(run, 2000, northEntry, southEntry, westEntry, eastEntry, PHstatus, QueueStatus);
+            pLot = new ParkingLot(run, 1000, northEntry, southEntry, westEntry, eastEntry, PHstatus, QueueStatus);
             cCars = new ControlCars(run, northEntry, southEntry, westEntry, eastEntry);
 
-            northExit = new ExitQueue(pLot, run, ExitNorth);
-            southExit = new ExitQueue(pLot, run, ExitSouth);
-            westExit = new ExitQueue(pLot, run, ExitWest);
-            eastExit = new ExitQueue(pLot, run, EastExit);
+            northExit = new ExitQueue(pLot, run, NorthExitUnits);
+            southExit = new ExitQueue(pLot, run, SouthExitUnits);
+            westExit = new ExitQueue(pLot, run, WestExitUnits);
+            eastExit = new ExitQueue(pLot, run, EastExitUnits);
+
+            ParkingHousePicbox.BackColor = Color.Green;
 
         }
 
@@ -62,22 +65,9 @@ namespace FT5
             var esTask = Task.Factory.StartNew(() => southExit.Control());
             var ewTask = Task.Factory.StartNew(() => westExit.Control());
             var eETask = Task.Factory.StartNew(() => eastExit.Control());
-
-            //t1.Start();
-            //neTask.Start();
-            //seTask.Start();
-            //weTask.Start();
-            //eeTask.Start();
-            //enTask.Start();
-            //esTask.Start();
-            //ewTask.Start();
-            //eETask.Start();
-
-            
-
         }
 
-       
+
 
         private void PHstatus_Click(object sender, EventArgs e)
         {
@@ -86,10 +76,19 @@ namespace FT5
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            run = true;
-            if(run == true)
+
+            if (run == false)
             {
-                CreateTasks();
+                run = true;
+                cCars.Run = true;
+                StartButton.Text = "Open";
+            }
+            else if (run == true)
+            {
+                run = false;
+                cCars.Run = false;
+                StartButton.Text = "Close";
+
             }
         }
     }

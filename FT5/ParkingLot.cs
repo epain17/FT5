@@ -45,8 +45,7 @@ namespace FT5
         public void Sleep(int queue)
         {
 
-            Console.WriteLine("thread sleeping");
-            Thread.Sleep(random.Next(1000, 1500));
+            Thread.Sleep(random.Next(100, 500));
 
             if (queue == 1) { EnqueueNorth(); }
             else if (queue == 2) { EnqueueSouth(); }
@@ -61,6 +60,7 @@ namespace FT5
             {
                 Monitor.Wait(mylock);
             }
+            Monitor.PulseAll(mylock);
 
             carsOnTheLot.Enqueue(car);
 
@@ -74,23 +74,23 @@ namespace FT5
 
         public void EnqueueNorth()
         {
-            while (run == true)
+           
+            while (nEntry.Empty() == false)
             {
                 if (nEntry.Empty() == true) { break; }
                 Car temp;
                 temp = nEntry.DequeueToLot();
                 EnqueuweToLotFromEntry(temp);
-                Console.WriteLine("added from entry");
                 Thread.Sleep(random.Next(200, 500));
             }
+
             Sleep(n);
         }
         public void EnqueueSouth()
         {
-            while (run == true)
+            while (sEntry.Empty() == false)
             {
                 if (sEntry.Empty() == true) { break; }
-
                 Car temp;
                 temp = sEntry.DequeueToLot();
                 EnqueuweToLotFromEntry(temp);
@@ -102,7 +102,7 @@ namespace FT5
         }
         public void EnqueueWest()
         {
-            while (run == true)
+            while (wEntry.Empty() == false)
             {
                 if (wEntry.Empty() == true) { break; }
                 Car temp;
@@ -115,7 +115,7 @@ namespace FT5
         }
         public void EnqueueEast()
         {
-            while (run == true)
+            while (eEntry.Empty() == false)
             {
                 if (eEntry.Empty() == true) { break; }
                 Car temp;

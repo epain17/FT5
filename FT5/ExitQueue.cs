@@ -42,7 +42,7 @@ namespace FT5
                 Car temp;
                 temp = pLot.DequeFromLot();
                 CarToExit(temp);
-                Thread.Sleep(random.Next(3000, 5000));
+                Thread.Sleep(random.Next(4000, 5000));
                 ++nrCars;
                 l1.Invoke(new Action(delegate () { l1.Text = nrCars.ToString(); }));
             }

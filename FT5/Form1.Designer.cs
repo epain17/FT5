@@ -41,21 +41,30 @@
             this.ExitWest = new System.Windows.Forms.Label();
             this.ExitSouth = new System.Windows.Forms.Label();
             this.CarsStatus = new System.Windows.Forms.Label();
+            this.NorthEntryUnits = new System.Windows.Forms.Label();
+            this.NorthExitUnits = new System.Windows.Forms.Label();
+            this.EastEntryUnits = new System.Windows.Forms.Label();
+            this.EastExitUnits = new System.Windows.Forms.Label();
+            this.SouthEntryUnits = new System.Windows.Forms.Label();
+            this.SouthExitUnits = new System.Windows.Forms.Label();
+            this.WestEntryUnits = new System.Windows.Forms.Label();
+            this.WestExitUnits = new System.Windows.Forms.Label();
+            this.LeftLotunits = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ParkingHousePicbox)).BeginInit();
             this.SuspendLayout();
             // 
             // ParkingHousePicbox
             // 
-            this.ParkingHousePicbox.Location = new System.Drawing.Point(122, 171);
+            this.ParkingHousePicbox.Location = new System.Drawing.Point(174, 175);
             this.ParkingHousePicbox.Name = "ParkingHousePicbox";
-            this.ParkingHousePicbox.Size = new System.Drawing.Size(421, 192);
+            this.ParkingHousePicbox.Size = new System.Drawing.Size(340, 192);
             this.ParkingHousePicbox.TabIndex = 0;
             this.ParkingHousePicbox.TabStop = false;
             // 
             // QueueStatus
             // 
             this.QueueStatus.AutoSize = true;
-            this.QueueStatus.Location = new System.Drawing.Point(130, 261);
+            this.QueueStatus.Location = new System.Drawing.Point(204, 221);
             this.QueueStatus.Name = "QueueStatus";
             this.QueueStatus.Size = new System.Drawing.Size(75, 13);
             this.QueueStatus.TabIndex = 1;
@@ -64,7 +73,7 @@
             // PHstatus
             // 
             this.PHstatus.AutoSize = true;
-            this.PHstatus.Location = new System.Drawing.Point(420, 261);
+            this.PHstatus.Location = new System.Drawing.Point(374, 221);
             this.PHstatus.Name = "PHstatus";
             this.PHstatus.Size = new System.Drawing.Size(110, 13);
             this.PHstatus.TabIndex = 2;
@@ -73,18 +82,18 @@
             // 
             // StartButton
             // 
-            this.StartButton.Location = new System.Drawing.Point(291, 261);
+            this.StartButton.Location = new System.Drawing.Point(306, 261);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(75, 23);
             this.StartButton.TabIndex = 3;
-            this.StartButton.Text = "Start";
+            this.StartButton.Text = "Open";
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // NorthLabel
             // 
             this.NorthLabel.AutoSize = true;
-            this.NorthLabel.Location = new System.Drawing.Point(291, 125);
+            this.NorthLabel.Location = new System.Drawing.Point(270, 124);
             this.NorthLabel.Name = "NorthLabel";
             this.NorthLabel.Size = new System.Drawing.Size(79, 13);
             this.NorthLabel.TabIndex = 4;
@@ -93,7 +102,7 @@
             // West
             // 
             this.West.AutoSize = true;
-            this.West.Location = new System.Drawing.Point(13, 246);
+            this.West.Location = new System.Drawing.Point(2, 236);
             this.West.Name = "West";
             this.West.Size = new System.Drawing.Size(84, 13);
             this.West.TabIndex = 5;
@@ -102,7 +111,7 @@
             // East
             // 
             this.East.AutoSize = true;
-            this.East.Location = new System.Drawing.Point(588, 246);
+            this.East.Location = new System.Drawing.Point(557, 236);
             this.East.Name = "East";
             this.East.Size = new System.Drawing.Size(80, 13);
             this.East.TabIndex = 6;
@@ -111,7 +120,7 @@
             // South
             // 
             this.South.AutoSize = true;
-            this.South.Location = new System.Drawing.Point(291, 408);
+            this.South.Location = new System.Drawing.Point(270, 397);
             this.South.Name = "South";
             this.South.Size = new System.Drawing.Size(87, 13);
             this.South.TabIndex = 7;
@@ -120,25 +129,25 @@
             // EastExit
             // 
             this.EastExit.AutoSize = true;
-            this.EastExit.Location = new System.Drawing.Point(591, 270);
+            this.EastExit.Location = new System.Drawing.Point(556, 261);
             this.EastExit.Name = "EastExit";
             this.EastExit.Size = new System.Drawing.Size(48, 13);
             this.EastExit.TabIndex = 8;
-            this.EastExit.Text = "East Exit";
+            this.EastExit.Text = "Exit East";
             // 
             // ExitNorth
             // 
             this.ExitNorth.AutoSize = true;
-            this.ExitNorth.Location = new System.Drawing.Point(291, 147);
+            this.ExitNorth.Location = new System.Drawing.Point(270, 146);
             this.ExitNorth.Name = "ExitNorth";
             this.ExitNorth.Size = new System.Drawing.Size(53, 13);
             this.ExitNorth.TabIndex = 9;
-            this.ExitNorth.Text = "North Exit";
+            this.ExitNorth.Text = "Exit North";
             // 
             // ExitWest
             // 
             this.ExitWest.AutoSize = true;
-            this.ExitWest.Location = new System.Drawing.Point(16, 263);
+            this.ExitWest.Location = new System.Drawing.Point(2, 261);
             this.ExitWest.Name = "ExitWest";
             this.ExitWest.Size = new System.Drawing.Size(52, 13);
             this.ExitWest.TabIndex = 10;
@@ -147,7 +156,7 @@
             // ExitSouth
             // 
             this.ExitSouth.AutoSize = true;
-            this.ExitSouth.Location = new System.Drawing.Point(294, 425);
+            this.ExitSouth.Location = new System.Drawing.Point(270, 421);
             this.ExitSouth.Name = "ExitSouth";
             this.ExitSouth.Size = new System.Drawing.Size(55, 13);
             this.ExitSouth.TabIndex = 11;
@@ -156,17 +165,107 @@
             // CarsStatus
             // 
             this.CarsStatus.AutoSize = true;
-            this.CarsStatus.Location = new System.Drawing.Point(507, 513);
+            this.CarsStatus.Location = new System.Drawing.Point(441, 420);
             this.CarsStatus.Name = "CarsStatus";
-            this.CarsStatus.Size = new System.Drawing.Size(80, 13);
+            this.CarsStatus.Size = new System.Drawing.Size(184, 13);
             this.CarsStatus.TabIndex = 12;
-            this.CarsStatus.Text = "How many cars";
+            this.CarsStatus.Text = "How many cars has left the parkinglot";
+            // 
+            // NorthEntryUnits
+            // 
+            this.NorthEntryUnits.AutoSize = true;
+            this.NorthEntryUnits.Location = new System.Drawing.Point(368, 124);
+            this.NorthEntryUnits.Name = "NorthEntryUnits";
+            this.NorthEntryUnits.Size = new System.Drawing.Size(13, 13);
+            this.NorthEntryUnits.TabIndex = 13;
+            this.NorthEntryUnits.Text = "0";
+            // 
+            // NorthExitUnits
+            // 
+            this.NorthExitUnits.AutoSize = true;
+            this.NorthExitUnits.Location = new System.Drawing.Point(368, 145);
+            this.NorthExitUnits.Name = "NorthExitUnits";
+            this.NorthExitUnits.Size = new System.Drawing.Size(13, 13);
+            this.NorthExitUnits.TabIndex = 14;
+            this.NorthExitUnits.Text = "0";
+            // 
+            // EastEntryUnits
+            // 
+            this.EastEntryUnits.AutoSize = true;
+            this.EastEntryUnits.Location = new System.Drawing.Point(643, 236);
+            this.EastEntryUnits.Name = "EastEntryUnits";
+            this.EastEntryUnits.Size = new System.Drawing.Size(13, 13);
+            this.EastEntryUnits.TabIndex = 15;
+            this.EastEntryUnits.Text = "0";
+            // 
+            // EastExitUnits
+            // 
+            this.EastExitUnits.AutoSize = true;
+            this.EastExitUnits.Location = new System.Drawing.Point(643, 261);
+            this.EastExitUnits.Name = "EastExitUnits";
+            this.EastExitUnits.Size = new System.Drawing.Size(13, 13);
+            this.EastExitUnits.TabIndex = 16;
+            this.EastExitUnits.Text = "0";
+            // 
+            // SouthEntryUnits
+            // 
+            this.SouthEntryUnits.AutoSize = true;
+            this.SouthEntryUnits.Location = new System.Drawing.Point(371, 396);
+            this.SouthEntryUnits.Name = "SouthEntryUnits";
+            this.SouthEntryUnits.Size = new System.Drawing.Size(13, 13);
+            this.SouthEntryUnits.TabIndex = 17;
+            this.SouthEntryUnits.Text = "0";
+            // 
+            // SouthExitUnits
+            // 
+            this.SouthExitUnits.AutoSize = true;
+            this.SouthExitUnits.Location = new System.Drawing.Point(374, 420);
+            this.SouthExitUnits.Name = "SouthExitUnits";
+            this.SouthExitUnits.Size = new System.Drawing.Size(13, 13);
+            this.SouthExitUnits.TabIndex = 18;
+            this.SouthExitUnits.Text = "0";
+            // 
+            // WestEntryUnits
+            // 
+            this.WestEntryUnits.AutoSize = true;
+            this.WestEntryUnits.Location = new System.Drawing.Point(93, 236);
+            this.WestEntryUnits.Name = "WestEntryUnits";
+            this.WestEntryUnits.Size = new System.Drawing.Size(13, 13);
+            this.WestEntryUnits.TabIndex = 19;
+            this.WestEntryUnits.Text = "0";
+            // 
+            // WestExitUnits
+            // 
+            this.WestExitUnits.AutoSize = true;
+            this.WestExitUnits.Location = new System.Drawing.Point(96, 260);
+            this.WestExitUnits.Name = "WestExitUnits";
+            this.WestExitUnits.Size = new System.Drawing.Size(13, 13);
+            this.WestExitUnits.TabIndex = 20;
+            this.WestExitUnits.Text = "0";
+            // 
+            // LeftLotunits
+            // 
+            this.LeftLotunits.AutoSize = true;
+            this.LeftLotunits.Location = new System.Drawing.Point(444, 447);
+            this.LeftLotunits.Name = "LeftLotunits";
+            this.LeftLotunits.Size = new System.Drawing.Size(13, 13);
+            this.LeftLotunits.TabIndex = 21;
+            this.LeftLotunits.Text = "0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 555);
+            this.Controls.Add(this.LeftLotunits);
+            this.Controls.Add(this.WestExitUnits);
+            this.Controls.Add(this.WestEntryUnits);
+            this.Controls.Add(this.SouthExitUnits);
+            this.Controls.Add(this.SouthEntryUnits);
+            this.Controls.Add(this.EastExitUnits);
+            this.Controls.Add(this.EastEntryUnits);
+            this.Controls.Add(this.NorthExitUnits);
+            this.Controls.Add(this.NorthEntryUnits);
             this.Controls.Add(this.CarsStatus);
             this.Controls.Add(this.ExitSouth);
             this.Controls.Add(this.ExitWest);
@@ -203,6 +302,15 @@
         private System.Windows.Forms.Label ExitWest;
         private System.Windows.Forms.Label ExitSouth;
         private System.Windows.Forms.Label CarsStatus;
+        private System.Windows.Forms.Label NorthEntryUnits;
+        private System.Windows.Forms.Label NorthExitUnits;
+        private System.Windows.Forms.Label EastEntryUnits;
+        private System.Windows.Forms.Label EastExitUnits;
+        private System.Windows.Forms.Label SouthEntryUnits;
+        private System.Windows.Forms.Label SouthExitUnits;
+        private System.Windows.Forms.Label WestEntryUnits;
+        private System.Windows.Forms.Label WestExitUnits;
+        private System.Windows.Forms.Label LeftLotunits;
     }
 }
 

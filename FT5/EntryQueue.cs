@@ -11,16 +11,13 @@ namespace FT5
     class EntryQueue
     {
         int maxInQueue, currentCars;
-        bool empty, full;
         Queue<Car> carsInQueue = new Queue<Car>();
         Label l1;
         Random random;
 
         public EntryQueue(int maxInQueue, Label l1)
         {
-            this.maxInQueue = maxInQueue;
-            empty = true;
-            full = false;
+            this.maxInQueue = maxInQueue;          
             currentCars = 0;
             this.l1 = l1;
             random = new Random();
@@ -28,7 +25,7 @@ namespace FT5
 
         public void Sleep()
         {
-            Thread.Sleep(random.Next(100, 500));
+            Thread.Sleep(random.Next(100, 200));
             DequeueToLot();
         }
 
@@ -44,14 +41,17 @@ namespace FT5
 
         public Car DequeueToLot()
         {
+            //Console.WriteLine(carsInQueue.Count());
             if (carsInQueue.Count() == 0)
             {
                 Sleep();
             }
 
             Car temp;
-            temp = carsInQueue.Dequeue();
             --currentCars;
+            temp = carsInQueue.Dequeue();
+            l1.Invoke(new Action(delegate () { l1.Text = currentCars.ToString(); }));
+
             return temp;
         }
 
@@ -59,20 +59,20 @@ namespace FT5
         {
             if (carsInQueue.Count() == 0)
             {
-                return empty = true;
+                return true;
             }
 
-            return empty = false;
+            return false;
         }
 
         public bool Full()
         {
             if (currentCars >= maxInQueue)
             {
-                return full = true;
+                return true;
             }
 
-            return full = false;
+            return false;
         }
 
 
