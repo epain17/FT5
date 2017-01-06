@@ -28,13 +28,13 @@ namespace FT5
 
         public void Sleep()
         {
-            Thread.Sleep(random.Next(1000, 2000));
+            Thread.Sleep(random.Next(100, 500));
             DequeueToLot();
         }
 
         public void EnqueToEntryQueue(Car car)
         {
-
+           
             carsInQueue.Enqueue(car);
             ++currentCars;
             l1.Invoke(new Action(delegate () { l1.Text = currentCars.ToString(); }));
@@ -48,8 +48,11 @@ namespace FT5
             {
                 Sleep();
             }
+
+            Car temp;
+            temp = carsInQueue.Dequeue();
             --currentCars;
-            return carsInQueue.Dequeue();
+            return temp;
         }
 
         public bool Empty()

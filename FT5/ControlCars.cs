@@ -24,12 +24,12 @@ namespace FT5
             random = new Random();
             carID = 0;
             entryQ = 0;
-            
+
         }
 
         public void Control()
         {
-            while(run == true)
+            while (run == true)
             {
                 entryQ = random.Next(0, 5);
                 AddCarsToLot(entryQ);
@@ -40,9 +40,9 @@ namespace FT5
 
         public void Sleep()
         {
-            while(run != true)
+            while (run != true)
             {
-                Thread.Sleep(random.Next(1000, 1500));
+                Thread.Sleep(random.Next(250, 500));
             }
             Control();
         }
@@ -50,26 +50,46 @@ namespace FT5
         public void AddCarsToLot(int Entry)
         {
             carID = random.Next(0, 3000);
-            if(Entry == 1)
+            if (Entry == 1)
             {
-                Car car = new Car(carID);
-                nEntry.EnqueToEntryQueue(car);
+                if (nEntry.Full() == false)
+                {
+                    Car car = new Car(carID);
+                    nEntry.EnqueToEntryQueue(car);
+
+                }
+
             }
-            else if(Entry == 2)
+            else if (Entry == 2)
             {
-                Car car = new Car(carID);
-                sEntry.EnqueToEntryQueue(car);
+                if (sEntry.Full() == false)
+                {
+                    Car car = new Car(carID);
+                    sEntry.EnqueToEntryQueue(car);
+
+                }
+
             }
-            else if(Entry == 3)
+            else if (Entry == 3)
             {
-                Car car = new Car(carID);
-                wEntry.EnqueToEntryQueue(car);
+                if (wEntry.Full() == false)
+                {
+                    Car car = new Car(carID);
+                    wEntry.EnqueToEntryQueue(car);
+                }
             }
-            else if(Entry == 4)
+            else if (Entry == 4)
             {
-                Car car = new Car(carID);
-                eEntry.EnqueToEntryQueue(car);
+                if (eEntry.Full() == false)
+                {
+                    Car car = new Car(carID);
+                    eEntry.EnqueToEntryQueue(car);
+                }
+
             }
+
+            Thread.Sleep(random.Next(200, 400));
+            Control();
         }
     }
 }

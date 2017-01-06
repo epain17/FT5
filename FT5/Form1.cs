@@ -12,7 +12,7 @@ namespace FT5
 {
     public partial class Form1 : Form
     {
-        bool run;
+        bool run = true;
         ParkingLot pLot;
         ControlCars cCars;
 
@@ -52,26 +52,28 @@ namespace FT5
 
         public void CreateTasks()
         {
-            var t1 = new Task(() => cCars.Control());
-            var neTask = new Task(() => pLot.EnqueueNorth());
-            var seTask = new Task(() => pLot.EnqueueSouth());
-            var weTask = new Task(() => pLot.EnqueueWest());
-            var eeTask = new Task(() => pLot.EnqueueEast());
+            var t1 = Task.Factory.StartNew(() => cCars.Control());
+            var neTask = Task.Factory.StartNew(() => pLot.EnqueueNorth());
+            var seTask = Task.Factory.StartNew(() => pLot.EnqueueSouth());
+            var weTask = Task.Factory.StartNew(() => pLot.EnqueueWest());
+            var eeTask = Task.Factory.StartNew(() => pLot.EnqueueEast());
 
-            //var enTask = new Task(() => northExit.Control());
-            //var esTask = new Task(() => southExit.Control());
-            //var ewTask = new Task(() => westExit.Control());
-            //var eETask = new Task(() => eastExit.Control());
+            var enTask = Task.Factory.StartNew(() => northExit.Control());
+            var esTask = Task.Factory.StartNew(() => southExit.Control());
+            var ewTask = Task.Factory.StartNew(() => westExit.Control());
+            var eETask = Task.Factory.StartNew(() => eastExit.Control());
 
-            t1.Start();
-            neTask.Start();
-            seTask.Start();
-            weTask.Start();
-            eeTask.Start();
+            //t1.Start();
+            //neTask.Start();
+            //seTask.Start();
+            //weTask.Start();
+            //eeTask.Start();
             //enTask.Start();
             //esTask.Start();
             //ewTask.Start();
             //eETask.Start();
+
+            
 
         }
 
