@@ -16,29 +16,30 @@ namespace FT5
         Queue<Car> carsOnTheLot = new Queue<Car>();
         EntryQueue nEntry, sEntry, wEntry, eEntry;
         Label l1, l2;
+        PictureBox p1;
         object mylock;
-        bool run;
         Random random;
 
-        public ParkingLot(bool run, int maxNrCars, EntryQueue nEntry, EntryQueue sEntry, EntryQueue wEntry, EntryQueue eEntry, Label l1, Label l2)
+        public ParkingLot(int maxNrCars, EntryQueue nEntry, EntryQueue sEntry, EntryQueue wEntry,
+            EntryQueue eEntry, Label l1, Label l2, PictureBox p1)
         {
             this.maxNrCars = maxNrCars;
             currentNrCars = 0;
             random = new Random();
-            this.run = run;
             this.nEntry = nEntry;
             this.sEntry = sEntry;
             this.wEntry = wEntry;
             this.eEntry = eEntry;
             this.l1 = l1;
             this.l2 = l2;
+            this.p1 = p1;
+
             n = 1;
             s = 2;
             w = 3;
             e = 4;
 
             mylock = new object();
-
 
         }
 
@@ -58,8 +59,11 @@ namespace FT5
             Monitor.Enter(mylock);
             while (carsOnTheLot.Count >= maxNrCars)
             {
+                p1.Invoke(new Action(delegate { p1.BackColor = System.Drawing.Color.Red; }));
                 Monitor.Wait(mylock);
             }
+            p1.Invoke(new Action(delegate { p1.BackColor = System.Drawing.Color.Green; }));
+
             Monitor.PulseAll(mylock);
 
             carsOnTheLot.Enqueue(car);

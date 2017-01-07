@@ -41,13 +41,13 @@ namespace FT5
             westEntry = new EntryQueue(50, WestEntryUnits);
             eastEntry = new EntryQueue(50, EastEntryUnits);
 
-            pLot = new ParkingLot(run, 1000, northEntry, southEntry, westEntry, eastEntry, PHstatus, QueueStatus);
+            pLot = new ParkingLot(100, northEntry, southEntry, westEntry, eastEntry, PHstatus, QueueStatus, ParkingHousePicbox);
             cCars = new ControlCars(run, northEntry, southEntry, westEntry, eastEntry);
 
-            northExit = new ExitQueue(pLot, run, NorthExitUnits);
-            southExit = new ExitQueue(pLot, run, SouthExitUnits);
-            westExit = new ExitQueue(pLot, run, WestExitUnits);
-            eastExit = new ExitQueue(pLot, run, EastExitUnits);
+            northExit = new ExitQueue(pLot, NorthExitUnits);
+            southExit = new ExitQueue(pLot, SouthExitUnits);
+            westExit = new ExitQueue(pLot, WestExitUnits);
+            eastExit = new ExitQueue(pLot, EastExitUnits);
 
             ParkingHousePicbox.BackColor = Color.Green;
 

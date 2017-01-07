@@ -41,7 +41,6 @@ namespace FT5
 
         public Car DequeueToLot()
         {
-            //Console.WriteLine(carsInQueue.Count());
             if (carsInQueue.Count() == 0)
             {
                 Sleep();

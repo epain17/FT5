@@ -13,15 +13,13 @@ namespace FT5
         Queue<Car> carExitQueue = new Queue<Car>();
         ParkingLot pLot;
         int nrCars;
-        bool run;
         Random random;
         Label l1;
 
-        public ExitQueue(ParkingLot pLot, bool run, Label l1)
+        public ExitQueue(ParkingLot pLot, Label l1)
         {
             nrCars = 0;
             this.pLot = pLot;
-            this.run = run;
             random = new Random();
             this.l1 = l1;
         }
