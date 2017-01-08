@@ -43,17 +43,10 @@ namespace FT5
 
         }
 
-        public void Sleep(int queue)
-        {
-
-            Thread.Sleep(random.Next(100, 500));
-
-            if (queue == 1) { EnqueueNorth(); }
-            else if (queue == 2) { EnqueueSouth(); }
-            else if (queue == 3) { EnqueueWest(); }
-            else if (queue == 4) { EnqueueEast(); }
-        }
-
+        /// <summary>
+        /// Metoden tar in ett Car obejct från vald kö och lägger till den i parkeringens Queue sålänge den inte är full
+        /// </summary>
+        /// <param name="car"></param>
         public void EnqueuweToLotFromEntry(Car car)
         {
             Monitor.Enter(mylock);
@@ -76,7 +69,11 @@ namespace FT5
 
         }
 
-        public void EnqueueNorth()
+        /// <summary>
+        /// 4 tasks jobbar på varsin ingång till parkeringen och lägger till från respektive 
+        /// väntkö sålänge den inte är tom. Den sätts i delay om kön är tom.
+        /// </summary>
+        public async void EnqueueNorth()
         {
            
             while (nEntry.Empty() == false)
@@ -85,12 +82,12 @@ namespace FT5
                 Car temp;
                 temp = nEntry.DequeueToLot();
                 EnqueuweToLotFromEntry(temp);
-                Thread.Sleep(random.Next(200, 500));
+                await Task.Delay(random.Next(200, 500));
             }
 
             Sleep(n);
         }
-        public void EnqueueSouth()
+        public async void EnqueueSouth()
         {
             while (sEntry.Empty() == false)
             {
@@ -98,13 +95,13 @@ namespace FT5
                 Car temp;
                 temp = sEntry.DequeueToLot();
                 EnqueuweToLotFromEntry(temp);
-                Thread.Sleep(random.Next(200, 500));
+                await Task.Delay(random.Next(200, 500));
             }
 
             Sleep(s);
 
         }
-        public void EnqueueWest()
+        public async void EnqueueWest()
         {
             while (wEntry.Empty() == false)
             {
@@ -112,12 +109,12 @@ namespace FT5
                 Car temp;
                 temp = wEntry.DequeueToLot();
                 EnqueuweToLotFromEntry(temp);
-                Thread.Sleep(random.Next(200, 500));
+                await Task.Delay(random.Next(200, 500));
             }
             Sleep(w);
 
         }
-        public void EnqueueEast()
+        public async void EnqueueEast()
         {
             while (eEntry.Empty() == false)
             {
@@ -125,13 +122,31 @@ namespace FT5
                 Car temp;
                 temp = eEntry.DequeueToLot();
                 EnqueuweToLotFromEntry(temp);
-                Thread.Sleep(random.Next(200, 500));
+                await Task.Delay(random.Next(200, 500));
             }
             Sleep(e);
 
         }
 
-        public Car DequeFromLot()
+        /// <summary>
+        /// metod som sätter tråd i delay
+        /// </summary>
+        /// <param name="queue"></param>
+        public async void Sleep(int queue)
+        {
+           
+            await Task.Delay(random.Next(50, 100));
+
+            if (queue == 1) { EnqueueNorth(); }
+            else if (queue == 2) { EnqueueSouth(); }
+            else if (queue == 3) { EnqueueWest(); }
+            else if (queue == 4) { EnqueueEast(); }
+        }
+
+        /// <summary>
+        /// metod som tarbort car object från parkeringen.
+        /// </summary>
+        public void DequeFromLot()
         {
             Monitor.Enter(mylock);
 
@@ -139,16 +154,20 @@ namespace FT5
             {
                 Monitor.Wait(mylock);
             }
-
+            carsOnTheLot.Dequeue();
             --currentNrCars;
             l1.Invoke(new Action(delegate () { l1.Text = currentNrCars.ToString(); }));
 
             Monitor.PulseAll(mylock);
             Monitor.Exit(mylock);
 
-            return carsOnTheLot.Dequeue();
+            
         }
 
+        /// <summary>
+        /// bool som ser om parkeringen är tom
+        /// </summary>
+        /// <returns></returns>
         public bool Empty()
         {
             if (carsOnTheLot.Count() == 0)
@@ -157,6 +176,14 @@ namespace FT5
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// int som retunerar ett random värde till exit queues.
+        /// </summary>
+        public int Delay
+        {
+            get { return random.Next(2000, 5000); }
         }
 
     }

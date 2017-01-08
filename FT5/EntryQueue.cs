@@ -23,12 +23,19 @@ namespace FT5
             random = new Random();
         }
 
-        public void Sleep()
+        /// <summary>
+        /// Sätter task i delay
+        /// </summary>
+        public async void Delay()
         {
-            Thread.Sleep(random.Next(100, 200));
+            await Task.Delay(random.Next(100, 200));
             DequeueToLot();
         }
 
+        /// <summary>
+        /// Lägger till ett car objekt till vänt listan
+        /// </summary>
+        /// <param name="car"></param>
         public void EnqueToEntryQueue(Car car)
         {
            
@@ -39,11 +46,15 @@ namespace FT5
 
         }
 
+        /// <summary>
+        /// Tar ut car objekt från kön till parkeringen.
+        /// </summary>
+        /// <returns></returns>
         public Car DequeueToLot()
         {
             if (carsInQueue.Count() == 0)
             {
-                Sleep();
+                Delay();
             }
 
             Car temp;
@@ -54,6 +65,10 @@ namespace FT5
             return temp;
         }
 
+        /// <summary>
+        /// Bool som ser om kön är tom
+        /// </summary>
+        /// <returns></returns>
         public bool Empty()
         {
             if (carsInQueue.Count() == 0)
@@ -64,6 +79,10 @@ namespace FT5
             return false;
         }
 
+        /// <summary>
+        /// bool som set om kön är full
+        /// </summary>
+        /// <returns></returns>
         public bool Full()
         {
             if (currentCars >= maxInQueue)

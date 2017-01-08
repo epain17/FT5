@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FT5
 {
@@ -12,7 +13,8 @@ namespace FT5
         EntryQueue nEntry, sEntry, wEntry, eEntry;
         bool run;
         Random random;
-        int carID, entryQ;
+        int carID, entryQ, delay;
+        object mylock;
 
         public ControlCars(bool run, EntryQueue nEntry, EntryQueue sEntry, EntryQueue wEntry, EntryQueue eEntry)
         {
@@ -21,70 +23,70 @@ namespace FT5
             this.wEntry = wEntry;
             this.eEntry = eEntry;
             this.run = run;
+            mylock = new object();
             random = new Random();
             carID = 0;
             entryQ = 0;
 
         }
 
-        public void Control()
+        /// <summary>
+        /// Lägger en bil i en utav ingångarna. 
+        /// </summary>
+        public async void Control()
         {
             while (run == true)
             {
                 entryQ = random.Next(0, 5);
                 AddCarsToLot(entryQ);
+                await Task.Delay(300);
+
             }
 
-            Sleep();
+            Delay();
         }
 
-        public void Sleep()
+        /// <summary>
+        /// sätter tråd på delay om run boolen är false
+        /// </summary>
+        public async void Delay()
         {
             while (run != true)
             {
-                Thread.Sleep(random.Next(10, 50));
+                await Task.Delay(DelayRandom);
             }
             Control();
         }
 
+        /// <summary>
+        /// Lägger till bilar random väntkö till parkeringen
+        /// </summary>
+        /// <param name="Entry"></param>
         public void AddCarsToLot(int Entry)
         {
-            carID = random.Next(0, 3000);
-            if (Entry == 1)
+            carID = carID + 2;
+            Car car = new Car(carID);
+            if (Entry == 1 && nEntry.Full() == false)
             {
-                if (nEntry.Full() == false)
-                {
-                    Car car = new Car(carID);
-                    nEntry.EnqueToEntryQueue(car);
 
-                }
+                nEntry.EnqueToEntryQueue(car);
 
             }
-            else if (Entry == 2)
+            else if (Entry == 2 && sEntry.Full() == false)
             {
-                if (sEntry.Full() == false)
-                {
-                    Car car = new Car(carID);
-                    sEntry.EnqueToEntryQueue(car);
 
-                }
+                sEntry.EnqueToEntryQueue(car);
 
             }
-            else if (Entry == 3)
+            else if (Entry == 3 && wEntry.Full() == false)
             {
-                if (wEntry.Full() == false)
-                {
-                    Car car = new Car(carID);
-                    wEntry.EnqueToEntryQueue(car);
-                }
+
+                wEntry.EnqueToEntryQueue(car);
+
             }
-            else if (Entry == 4)
+            else if (Entry == 4 && eEntry.Full() == false)
             {
-                if (eEntry.Full() == false)
-                {
-                    Car car = new Car(carID);
-                    eEntry.EnqueToEntryQueue(car);
-                }
+                eEntry.EnqueToEntryQueue(car);
 
             }
 
@@ -92,10 +94,24 @@ namespace FT5
             Control();
         }
 
+        /// <summary>
+        /// retunerar en random int
+        /// </summary>
+        /// <returns></returns>
+        public int DelayRandom
+        {        
+            get { return delay = random.Next(200, 500); }
+            
+        }
+
+        /// <summary>
+        /// property för boolen run
+        /// </summary>
         public bool Run
         {
             get { return run; }
             set { run = value; }
         }
+
     }
 }

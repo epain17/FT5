@@ -41,13 +41,14 @@ namespace FT5
             westEntry = new EntryQueue(50, WestEntryUnits);
             eastEntry = new EntryQueue(50, EastEntryUnits);
 
-            pLot = new ParkingLot(100, northEntry, southEntry, westEntry, eastEntry, PHstatus, QueueStatus, ParkingHousePicbox);
+            pLot = new ParkingLot(1000, northEntry, southEntry, westEntry, eastEntry, PHstatus, QueueStatus, ParkingHousePicbox);
             cCars = new ControlCars(run, northEntry, southEntry, westEntry, eastEntry);
-
+           
             northExit = new ExitQueue(pLot, NorthExitUnits);
             southExit = new ExitQueue(pLot, SouthExitUnits);
             westExit = new ExitQueue(pLot, WestExitUnits);
             eastExit = new ExitQueue(pLot, EastExitUnits);
+
 
             ParkingHousePicbox.BackColor = Color.Green;
 
@@ -67,13 +68,6 @@ namespace FT5
             var eETask = Task.Factory.StartNew(() => eastExit.Control());
         }
 
-
-
-        private void PHstatus_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void StartButton_Click(object sender, EventArgs e)
         {
 
@@ -90,6 +84,11 @@ namespace FT5
                 StartButton.Text = "Close";
 
             }
+        }
+
+        private void PHstatus_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

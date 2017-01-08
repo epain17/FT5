@@ -40,7 +40,6 @@
             this.ExitNorth = new System.Windows.Forms.Label();
             this.ExitWest = new System.Windows.Forms.Label();
             this.ExitSouth = new System.Windows.Forms.Label();
-            this.CarsStatus = new System.Windows.Forms.Label();
             this.NorthEntryUnits = new System.Windows.Forms.Label();
             this.NorthExitUnits = new System.Windows.Forms.Label();
             this.EastEntryUnits = new System.Windows.Forms.Label();
@@ -49,7 +48,6 @@
             this.SouthExitUnits = new System.Windows.Forms.Label();
             this.WestEntryUnits = new System.Windows.Forms.Label();
             this.WestExitUnits = new System.Windows.Forms.Label();
-            this.LeftLotunits = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ParkingHousePicbox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,15 +160,6 @@
             this.ExitSouth.TabIndex = 11;
             this.ExitSouth.Text = "Exit South";
             // 
-            // CarsStatus
-            // 
-            this.CarsStatus.AutoSize = true;
-            this.CarsStatus.Location = new System.Drawing.Point(441, 420);
-            this.CarsStatus.Name = "CarsStatus";
-            this.CarsStatus.Size = new System.Drawing.Size(184, 13);
-            this.CarsStatus.TabIndex = 12;
-            this.CarsStatus.Text = "How many cars has left the parkinglot";
-            // 
             // NorthEntryUnits
             // 
             this.NorthEntryUnits.AutoSize = true;
@@ -243,21 +232,11 @@
             this.WestExitUnits.TabIndex = 20;
             this.WestExitUnits.Text = "0";
             // 
-            // LeftLotunits
-            // 
-            this.LeftLotunits.AutoSize = true;
-            this.LeftLotunits.Location = new System.Drawing.Point(444, 447);
-            this.LeftLotunits.Name = "LeftLotunits";
-            this.LeftLotunits.Size = new System.Drawing.Size(13, 13);
-            this.LeftLotunits.TabIndex = 21;
-            this.LeftLotunits.Text = "0";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 555);
-            this.Controls.Add(this.LeftLotunits);
             this.Controls.Add(this.WestExitUnits);
             this.Controls.Add(this.WestEntryUnits);
             this.Controls.Add(this.SouthExitUnits);
@@ -266,7 +245,6 @@
             this.Controls.Add(this.EastEntryUnits);
             this.Controls.Add(this.NorthExitUnits);
             this.Controls.Add(this.NorthEntryUnits);
-            this.Controls.Add(this.CarsStatus);
             this.Controls.Add(this.ExitSouth);
             this.Controls.Add(this.ExitWest);
             this.Controls.Add(this.ExitNorth);
@@ -301,7 +279,6 @@
         private System.Windows.Forms.Label ExitNorth;
         private System.Windows.Forms.Label ExitWest;
         private System.Windows.Forms.Label ExitSouth;
-        private System.Windows.Forms.Label CarsStatus;
         private System.Windows.Forms.Label NorthEntryUnits;
         private System.Windows.Forms.Label NorthExitUnits;
         private System.Windows.Forms.Label EastEntryUnits;
@@ -310,7 +287,6 @@
         private System.Windows.Forms.Label SouthExitUnits;
         private System.Windows.Forms.Label WestEntryUnits;
         private System.Windows.Forms.Label WestExitUnits;
-        private System.Windows.Forms.Label LeftLotunits;
     }
 }
 

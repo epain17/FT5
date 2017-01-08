@@ -10,11 +10,11 @@ namespace FT5
 {
     class ExitQueue
     {
-        Queue<Car> carExitQueue = new Queue<Car>();
         ParkingLot pLot;
-        int nrCars;
         Random random;
         Label l1;
+        int nrCars, delay;
+       
 
         public ExitQueue(ParkingLot pLot, Label l1)
         {
@@ -22,35 +22,43 @@ namespace FT5
             this.pLot = pLot;
             random = new Random();
             this.l1 = l1;
+           
         }
 
-        public void Sleep()
-        {
-            while (pLot.Empty() != false)
-            {
-                Thread.Sleep(random.Next(1000, 1500));
-            }
-            Control();
-        }
-
-        public void Control()
+        /// <summary>
+        /// Sålänge kön inte är tom så tas car objekt ut från parkeringen. annars sätts tråden i delay
+        /// </summary>
+        public async void Control()
         {
             while(pLot.Empty() == false)
             {
-                Car temp;
-                temp = pLot.DequeFromLot();
-                CarToExit(temp);
-                Thread.Sleep(random.Next(4000, 5000));
+                delay = pLot.Delay;
+                Console.WriteLine(delay);
+                await Task.Delay(delay);
+                
+                pLot.DequeFromLot();
                 ++nrCars;
                 l1.Invoke(new Action(delegate () { l1.Text = nrCars.ToString(); }));
             }
 
-            Sleep();
+            Delay();
         }
 
-        public void CarToExit(Car car)
+        /// <summary>
+        /// sätter task i delay
+        /// </summary>
+        public async void Delay()
         {
-            carExitQueue.Enqueue(car);
+            while (pLot.Empty() != false)
+            {
+                await Task.Delay(random.Next(1000, 1500));
+            }
+            Control();
         }
+
+
+ 
+
+     
     }
 }
