@@ -33,7 +33,6 @@ namespace FT5
             while(pLot.Empty() == false)
             {
                 delay = pLot.Delay;
-                Console.WriteLine(delay);
                 await Task.Delay(delay);
                 
                 pLot.DequeFromLot();

@@ -41,7 +41,7 @@ namespace FT5
             westEntry = new EntryQueue(50, WestEntryUnits);
             eastEntry = new EntryQueue(50, EastEntryUnits);
 
-            pLot = new ParkingLot(1000, northEntry, southEntry, westEntry, eastEntry, PHstatus, QueueStatus, ParkingHousePicbox);
+            pLot = new ParkingLot(100, northEntry, southEntry, westEntry, eastEntry, PHstatus, QueueStatus, ParkingHousePicbox);
             cCars = new ControlCars(run, northEntry, southEntry, westEntry, eastEntry);
            
             northExit = new ExitQueue(pLot, NorthExitUnits);
